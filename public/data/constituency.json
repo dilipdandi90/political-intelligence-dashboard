@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "compiledOn": "2026-10-22",
+    "disclaimer": "Compiled from secondary sources that reproduce Election Commission of India results (IndiaVotes, Wikipedia citing ECI). Vote counts were cross-checked between at least two sources; ECI result pages could not be fetched directly at compile time. Verify against ECI Form-21E / statistical reports before citing."
+  },
+  "pcNo": 34,
+  "name": "Pune",
+  "state": "Maharashtra",
+  "reservation": "GEN",
+  "districts": [
+    "Pune"
+  ],
+  "coverage": "Urban core of Pune city: parts of the Pune Municipal Corporation (PMC) plus the Pune and Khadki Cantonment Boards and the Kalas revenue circle of Haveli tehsil. The constituency lies wholly within Pune district.",
+  "delimitationNote": "Current boundaries come from the Delimitation Order, 2008 and were first used in the 2009 general election. Results before 2009 refer to different boundaries and are not compared here.",
+  "segments": [
+    {
+      "acNo": 208,
+      "name": "Vadgaon Sheri",
+      "reservation": "GEN",
+      "extent": "PMC wards 8–15, 64–68, 125–129; Kalas revenue circle of Haveli tehsil (excluding areas transferred to PMC)"
+    },
+    {
+      "acNo": 209,
+      "name": "Shivajinagar",
+      "reservation": "GEN",
+      "extent": "PMC wards 1–7, 59–63, 95–101, 119; Khadki Cantonment"
+    },
+    {
+      "acNo": 210,
+      "name": "Kothrud",
+      "reservation": "GEN",
+      "extent": "PMC wards 43–58, 161, 162"
+    },
+    {
+      "acNo": 212,
+      "name": "Parvati",
+      "reservation": "GEN",
+      "extent": "PMC wards 27–30, 32–40, 42, 86–90, 150"
+    },
+    {
+      "acNo": 214,
+      "name": "Pune Cantonment",
+      "reservation": "SC",
+      "extent": "PMC wards 16, 18, 24–25, 69–75, 77, 79–80, 83–85, 102, 104; Pune Cantonment"
+    },
+    {
+      "acNo": 215,
+      "name": "Kasba Peth",
+      "reservation": "GEN",
+      "extent": "PMC wards 41, 76, 78, 81–82, 91–94, 103, 105–118, 120–124"
+    }
+  ],
+  "segmentNotes": [
+    "Ward numbers are the pre-2008 PMC ward numbers used in the Delimitation Order, not current ward numbers.",
+    "In the source PDF the ward lists for AC 214 and AC 215 are printed in side-by-side columns; the split between the two should be treated as approximate."
+  ],
+  "members": [
+    {
+      "year": 1951,
+      "name": "N. V. Gadgil",
+      "party": "INC"
+    },
+    {
+      "year": 1957,
+      "name": "N. G. Gore",
+      "party": "PSP"
+    },
+    {
+      "year": 1962,
+      "name": "Shankarrao More",
+      "party": "INC"
+    },
+    {
+      "year": 1967,
+      "name": "S. M. Joshi",
+      "party": "SSP"
+    },
+    {
+      "year": 1971,
+      "name": "Mohan Dharia",
+      "party": "INC"
+    },
+    {
+      "year": 1977,
+      "name": "Mohan Dharia",
+      "party": "JNP"
+    },
+    {
+      "year": 1980,
+      "name": "Vitthalrao Gadgil",
+      "party": "INC(I)"
+    },
+    {
+      "year": 1984,
+      "name": "Vitthalrao Gadgil",
+      "party": "INC"
+    },
+    {
+      "year": 1989,
+      "name": "Vitthalrao Gadgil",
+      "party": "INC"
+    },
+    {
+      "year": 1991,
+      "name": "Anna Joshi",
+      "party": "BJP"
+    },
+    {
+      "year": 1996,
+      "name": "Suresh Kalmadi",
+      "party": "INC"
+    },
+    {
+      "year": 1998,
+      "name": "Vitthal Tupe",
+      "party": "INC"
+    },
+    {
+      "year": 1999,
+      "name": "Pradeep Rawat",
+      "party": "BJP"
+    },
+    {
+      "year": 2004,
+      "name": "Suresh Kalmadi",
+      "party": "INC"
+    },
+    {
+      "year": 2009,
+      "name": "Suresh Kalmadi",
+      "party": "INC"
+    },
+    {
+      "year": 2014,
+      "name": "Anil Shirole",
+      "party": "BJP"
+    },
+    {
+      "year": 2019,
+      "name": "Girish Bapat",
+      "party": "BJP"
+    },
+    {
+      "year": 2024,
+      "name": "Murlidhar Mohol",
+      "party": "BJP"
+    }
+  ],
+  "membersNote": "List of MPs taken from Wikipedia and not independently cross-checked. 1951 was a two-member seat; only the general-seat member is shown.",
+  "demographics": [
+    {
+      "id": "pune-district-2011",
+      "title": "Pune district",
+      "geography": "District (larger than the constituency – includes rural tehsils and Pimpri-Chinchwad)",
+      "referenceYear": 2011,
+      "figures": {
+        "population": 9429408,
+        "males": 4924105,
+        "females": 4505303,
+        "sexRatio": 915,
+        "child0to6": 1104959,
+        "rural": 3678226,
+        "urban": 5751182,
+        "literacyRate": 86.15,
+        "literacyMale": 90.84,
+        "literacyFemale": 81.05,
+        "scPopulation": 1180703,
+        "stPopulation": 348876,
+        "areaKm2": 15643,
+        "densityPerKm2": 603,
+        "decadalGrowthPct": 30.37
+      },
+      "sources": [
+        {
+          "label": "Census 2011 (via census2011.co.in) – Pune district",
+          "url": "https://www.census2011.co.in/census/district/359-pune.html"
+        },
+        {
+          "label": "City Population – Pune district, Census 2011",
+          "url": "https://citypopulation.de/en/india/maharashtra/admin/521__pune/"
+        },
+        {
+          "label": "Wikipedia – Pune district",
+          "url": "https://en.wikipedia.org/wiki/Pune_district"
+        }
+      ],
+      "notes": [
+        "Males + females and rural + urban both add up to the total population.",
+        "Literacy rate = literates ÷ population aged 7 and above (Census definition).",
+        "The official District Census Handbook could not be opened at compile time; figures come from secondary sites that agree with each other."
+      ]
+    },
+    {
+      "id": "pmc-2011",
+      "title": "Pune Municipal Corporation",
+      "geography": "City (PMC limits as of 2011) – closest available proxy for the constituency",
+      "referenceYear": 2011,
+      "figures": {
+        "population": 3124458,
+        "males": 1603675,
+        "females": 1520783,
+        "sexRatio": 948,
+        "child0to6": 337062,
+        "rural": 0,
+        "urban": 3124458,
+        "literacyRate": 89.56,
+        "literacyMale": 92.31,
+        "literacyFemale": 86.67,
+        "scPopulation": null,
+        "stPopulation": null,
+        "areaKm2": null,
+        "densityPerKm2": null,
+        "decadalGrowthPct": null
+      },
+      "sources": [
+        {
+          "label": "Census 2011 (via census2011.co.in) – Pune city",
+          "url": "https://www.census2011.co.in/census/city/375-pune.html"
+        },
+        {
+          "label": "City Population – Pune",
+          "url": "https://citypopulation.de/en/india/maharashtra/2725__pune/"
+        }
+      ],
+      "notes": [
+        "A municipal corporation is entirely urban by definition.",
+        "SC/ST figures for PMC could not be verified from a reliable source and are left unavailable.",
+        "The constituency does not match PMC exactly: it covers only part of PMC and also includes the Pune (71,781) and Khadki (78,684) Cantonment Boards and the Kalas circle."
+      ]
+    },
+    {
+      "id": "pune-city-tehsil-2011",
+      "title": "Pune City tehsil",
+      "geography": "Sub-district – similar but not identical area; used here only for SC/ST share",
+      "referenceYear": 2011,
+      "figures": {
+        "population": 3304888,
+        "males": 1700867,
+        "females": 1604021,
+        "sexRatio": 943,
+        "child0to6": null,
+        "rural": 29965,
+        "urban": 3274923,
+        "literacyRate": null,
+        "literacyMale": null,
+        "literacyFemale": null,
+        "scPopulation": 446602,
+        "stPopulation": 36708,
+        "areaKm2": null,
+        "densityPerKm2": null,
+        "decadalGrowthPct": null
+      },
+      "sources": [
+        {
+          "label": "City Population – Pune City tehsil, Census 2011",
+          "url": "https://citypopulation.de/en/india/maharashtra/admin/pune/04194__pune_city/"
+        },
+        {
+          "label": "Wikipedia – Pune City taluka",
+          "url": "https://en.wikipedia.org/wiki/Pune_City_taluka"
+        }
+      ],
+      "notes": [
+        "Sex ratio computed from the male and female counts."
+      ]
+    }
+  ],
+  "demographicsNote": "The Census of India does not publish figures by parliamentary constituency. No official Pune PC-level demographic data exists, so district, city and tehsil figures are shown and labelled as such.",
+  "electoralSnapshotNote": "Latest electors figure is from the 2024 Lok Sabha election.",
+  "sources": [
+    {
+      "label": "ECI – Delimitation of Parliamentary and Assembly Constituencies Order, 2008 (Maharashtra, Pune district)",
+      "url": "https://web.archive.org/web/2010id_/http://eci.nic.in/eci_main/CurrentElections/CONSOLIDATED_ORDER%20_ECI%20.pdf"
+    },
+    {
+      "label": "Wikipedia – Pune Lok Sabha constituency (cites ECI)",
+      "url": "https://en.wikipedia.org/wiki/Pune_Lok_Sabha_constituency"
+    },
+    {
+      "label": "Wikipedia – 2024 Indian general election in Maharashtra",
+      "url": "https://en.wikipedia.org/wiki/2024_Indian_general_election_in_Maharashtra"
+    }
+  ]
+}

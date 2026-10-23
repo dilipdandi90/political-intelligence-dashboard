@@ -1,0 +1,236 @@
+{
+  "meta": {
+    "compiledOn": "2026-10-22",
+    "disclaimer": "Compiled from secondary sources that reproduce Election Commission of India results (IndiaVotes, Wikipedia citing ECI). Vote counts were cross-checked between at least two sources; ECI result pages could not be fetched directly at compile time. Verify against ECI Form-21E / statistical reports before citing."
+  },
+  "elections": [
+    {
+      "id": "ls-2009",
+      "year": 2009,
+      "kind": "LOK_SABHA",
+      "electors": 1806953,
+      "votesPolled": 734641,
+      "nota": null,
+      "totalValidVotes": 734641,
+      "candidates": [
+        {
+          "name": "Suresh Kalmadi",
+          "party": "INC",
+          "votes": 279973
+        },
+        {
+          "name": "Anil Shirole",
+          "party": "BJP",
+          "votes": 254272
+        },
+        {
+          "name": "Ranjeet Shrikant Shirole",
+          "party": "MNS",
+          "votes": 75930
+        },
+        {
+          "name": "D. S. Kulkarni",
+          "party": "BSP",
+          "votes": 62981
+        },
+        {
+          "name": "Arun Bhatia",
+          "party": "PG",
+          "votes": 30340
+        },
+        {
+          "name": "Amanulla Mohmod Al Khan",
+          "party": "IND",
+          "votes": 3088
+        },
+        {
+          "name": "Gulab Tatya Waghmode",
+          "party": "BBM",
+          "votes": 2354
+        },
+        {
+          "name": "Iswar Sambhayya Kamtam",
+          "party": "IND",
+          "votes": 2224
+        }
+      ],
+      "candidateListComplete": false,
+      "sources": [
+        {
+          "label": "IndiaVotes – Pune Lok Sabha 2009",
+          "url": "https://indiavotes.com/lok-sabha/2009/maharashtra/pune/"
+        },
+        {
+          "label": "Wikipedia – Pune Lok Sabha constituency (cites ECI)",
+          "url": "https://en.wikipedia.org/wiki/Pune_Lok_Sabha_constituency"
+        }
+      ],
+      "notes": [
+        "36 candidates contested; the 8 with at least 0.3% are listed. The other 28 polled 23,479 votes together (shown as \"Others\").",
+        "NOTA was introduced in 2013 and does not apply to this election.",
+        "IndiaVotes reports 7,34,482 votes polled while its own candidate rows add up to 7,34,641 (which matches Wikipedia). The candidate total is used."
+      ]
+    },
+    {
+      "id": "ls-2014",
+      "year": 2014,
+      "kind": "LOK_SABHA",
+      "electors": 1835836,
+      "votesPolled": 993274,
+      "nota": 6438,
+      "totalValidVotes": 986836,
+      "candidates": [
+        {
+          "name": "Anil Shirole",
+          "party": "BJP",
+          "votes": 569825
+        },
+        {
+          "name": "Vishwajeet Patangrao Kadam",
+          "party": "INC",
+          "votes": 254056
+        },
+        {
+          "name": "Deepak Natharam Paigude",
+          "party": "MNS",
+          "votes": 93502
+        },
+        {
+          "name": "Subhash Shankarrao Ware",
+          "party": "AAP",
+          "votes": 28657
+        },
+        {
+          "name": "Imtiyaz Peerzade",
+          "party": "BSP",
+          "votes": 14727
+        },
+        {
+          "name": "Arun Bhatia",
+          "party": "PG",
+          "votes": 7222
+        }
+      ],
+      "candidateListComplete": false,
+      "sources": [
+        {
+          "label": "IndiaVotes – Pune Lok Sabha 2014",
+          "url": "https://indiavotes.com/lok-sabha/2014/maharashtra/pune/"
+        },
+        {
+          "label": "Wikipedia – Pune Lok Sabha constituency (cites ECI)",
+          "url": "https://en.wikipedia.org/wiki/Pune_Lok_Sabha_constituency"
+        },
+        {
+          "label": "Punekar News – Pune Lok Sabha turnout history",
+          "url": "https://www.punekarnews.in/?p=176814"
+        }
+      ],
+      "notes": [
+        "29 candidates contested; the 6 with at least 0.3% are listed. The other 23 polled 18,847 votes together.",
+        "Votes polled = candidate votes + NOTA. Wikipedia reports 9,93,278 (4 more, probably rejected ballots)."
+      ]
+    },
+    {
+      "id": "ls-2019",
+      "year": 2019,
+      "kind": "LOK_SABHA",
+      "electors": null,
+      "reportedTurnoutPct": 49.89,
+      "votesPolled": 1035236,
+      "nota": 11001,
+      "totalValidVotes": 1024235,
+      "candidates": [
+        {
+          "name": "Girish Bhalchandra Bapat",
+          "party": "BJP",
+          "votes": 632835
+        },
+        {
+          "name": "Mohan Joshi",
+          "party": "INC",
+          "votes": 308207
+        },
+        {
+          "name": "Anil Narayan Jadhav",
+          "party": "VBA",
+          "votes": 64793
+        },
+        {
+          "name": "Uttam Pandurang Shinde",
+          "party": "BSP",
+          "votes": 4792
+        }
+      ],
+      "candidateListComplete": false,
+      "sources": [
+        {
+          "label": "IndiaVotes – Pune Lok Sabha 2019",
+          "url": "https://indiavotes.com/lok-sabha/2019/maharashtra/pune/"
+        },
+        {
+          "label": "Wikipedia – Pune Lok Sabha constituency (cites ECI)",
+          "url": "https://en.wikipedia.org/wiki/Pune_Lok_Sabha_constituency"
+        },
+        {
+          "label": "Punekar News – Pune Lok Sabha turnout history",
+          "url": "https://www.punekarnews.in/?p=176814"
+        }
+      ],
+      "notes": [
+        "31 candidates contested; the 4 with at least 0.3% are listed. The other 27 polled 13,608 votes together.",
+        "Registered electors are marked unavailable: IndiaVotes gives 19,97,594, but the widely reported turnout of 49.89% implies roughly 20.75 lakh electors. The reported 49.89% is shown instead of a computed turnout."
+      ]
+    },
+    {
+      "id": "ls-2024",
+      "year": 2024,
+      "kind": "LOK_SABHA",
+      "electors": 2061276,
+      "votesPolled": 1104572,
+      "nota": 7460,
+      "totalValidVotes": 1097112,
+      "candidates": [
+        {
+          "name": "Murlidhar Mohol",
+          "party": "BJP",
+          "votes": 584728
+        },
+        {
+          "name": "Ravindra Hemraj Dhangekar",
+          "party": "INC",
+          "votes": 461690
+        },
+        {
+          "name": "Vasant (Tatya) More",
+          "party": "VBA",
+          "votes": 32012
+        },
+        {
+          "name": "Prashant Dadaram Ranpise",
+          "party": "BSP",
+          "votes": 3974
+        }
+      ],
+      "candidateListComplete": false,
+      "sources": [
+        {
+          "label": "IndiaVotes – Pune Lok Sabha 2024",
+          "url": "https://indiavotes.com/lok-sabha/2024/maharashtra/pune/"
+        },
+        {
+          "label": "Wikipedia – Pune Lok Sabha constituency (cites ECI)",
+          "url": "https://en.wikipedia.org/wiki/Pune_Lok_Sabha_constituency"
+        },
+        {
+          "label": "Punekar News – Pune Lok Sabha turnout history",
+          "url": "https://www.punekarnews.in/?p=176814"
+        }
+      ],
+      "notes": [
+        "35 candidates contested; the 4 with at least 0.3% are listed. The other 31 polled 14,708 votes together.",
+        "Sources give slightly different polled totals: 11,04,572 (IndiaVotes, candidates + NOTA), 11,04,769 (Wikipedia) and 11,03,678 (ECI final turnout of 53.54%, via Punekar News). The reconciled 11,04,572 is used."
+      ]
+    }
+  ]
+}
