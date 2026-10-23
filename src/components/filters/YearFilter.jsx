@@ -1,4 +1,6 @@
 import { useId } from 'react'
+import { LinkButton } from '../ui'
+import { FIELD, FIELD_LABEL } from './fieldStyles'
 
 /**
  * Multi-select of election years rendered as toggle chips (real checkboxes
@@ -16,35 +18,36 @@ export function YearFilter({ legend = 'Election years', options, selected, onCha
   }
 
   return (
-    <fieldset className="filter chip-filter">
-      <legend className="filter__label">{legend}</legend>
-      <div className="chip-filter__chips">
+    <fieldset className={FIELD}>
+      <legend className={`${FIELD_LABEL} mb-1.5`}>{legend}</legend>
+      <div className="flex flex-wrap gap-1.5">
         {options.map((o) => {
           const checked = selected.includes(o.value)
           const inputId = `${id}-${o.value}`
           return (
-            <span key={o.value} className="chip">
+            <span key={o.value} className="relative">
+              {/* invisible checkbox laid over the chip: clicks and keyboard focus land on the real input */}
               <input
                 id={inputId}
                 type="checkbox"
+                className="peer absolute inset-0 m-0 cursor-pointer opacity-0 disabled:cursor-not-allowed"
                 checked={checked}
                 onChange={() => toggle(o.value)}
                 disabled={checked && selected.length <= minSelected}
               />
-              <label htmlFor={inputId}>{o.label}</label>
+              <label
+                htmlFor={inputId}
+                className="inline-flex min-h-9 cursor-pointer items-center rounded-full border border-line bg-surface-2 px-3.5 py-1.5 text-sm font-medium select-none peer-checked:border-brand peer-checked:bg-brand peer-checked:text-white peer-checked:before:mr-1.5 peer-checked:before:text-[0.8em] peer-checked:before:content-['✓'] peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus"
+              >
+                {o.label}
+              </label>
             </span>
           )
         })}
       </div>
-      <div className="chip-filter__shortcuts">
-        <button type="button" className="link-btn" onClick={() => onChange(options.map((o) => o.value))}>
-          Select all
-        </button>
-        {minSelected === 0 && (
-          <button type="button" className="link-btn" onClick={() => onChange([])}>
-            Clear
-          </button>
-        )}
+      <div className="mt-1.5 flex gap-3">
+        <LinkButton onClick={() => onChange(options.map((o) => o.value))}>Select all</LinkButton>
+        {minSelected === 0 && <LinkButton onClick={() => onChange([])}>Clear</LinkButton>}
       </div>
     </fieldset>
   )

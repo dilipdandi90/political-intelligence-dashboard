@@ -1,7 +1,7 @@
 import { formatCompact, formatNumber, formatPct } from '../../utils/format'
 
-export const AXIS_TICK = { fill: 'var(--text-muted)', fontSize: 12 }
-export const GRID_STROKE = 'var(--border)'
+export const AXIS_TICK = { fill: 'var(--color-muted)', fontSize: 12 }
+export const GRID_STROKE = 'var(--color-line)'
 
 /** Value formatters keyed by unit, shared by axes and tooltips. */
 export const UNIT_FORMATTERS = {
@@ -12,12 +12,12 @@ export const UNIT_FORMATTERS = {
 export function tooltipStyle() {
   return {
     contentStyle: {
-      background: 'var(--surface)',
-      border: '1px solid var(--border)',
+      background: 'var(--color-surface)',
+      border: '1px solid var(--color-line)',
       borderRadius: 8,
-      boxShadow: 'var(--shadow)',
+      boxShadow: '0 4px 12px rgb(16 24 40 / 0.08)',
       fontSize: 13,
     },
-    labelStyle: { fontWeight: 600, color: 'var(--text)' },
+    labelStyle: { fontWeight: 600, color: 'var(--color-ink)' },
   }
 }

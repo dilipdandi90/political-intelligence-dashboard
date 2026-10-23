@@ -14,7 +14,7 @@ import OverviewPage from './OverviewPage'
 beforeEach(() => clearApiCache())
 afterEach(() => vi.unstubAllGlobals())
 
-const kpiValue = (label) => screen.getAllByText(label, { selector: 'dt' })[0].parentElement.querySelector('.kpi__value').textContent
+const kpiValue = (label) => screen.getAllByText(label, { selector: 'dt' })[0].parentElement.querySelector('dd').textContent
 
 describe('missing values', () => {
   it('shows "Not available" instead of 0 when electors and votes polled are missing', async () => {

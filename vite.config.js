@@ -1,8 +1,9 @@
+import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   build: {
     // recharts is the bulk of the bundle; keep it in its own chunk so app code caches separately
     rollupOptions: {

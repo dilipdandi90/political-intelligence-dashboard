@@ -13,6 +13,8 @@ import { PageHeader, Section } from '../components/layout/PageHeader'
 import { useAssemblyResults, useConstituencyProfile, useLokSabhaResults } from '../hooks/useElectionData'
 import { latestGeneralResult } from '../utils/assemblySelectors'
 import { percent, summarizeElection } from '../utils/electionMath'
+import { Card, CardTitle, CardSubtitle, LinkButton, Grid } from '../components/ui'
+import { FilterBar } from '../components/filters/FilterBar'
 import { formatNumber, formatPct, NA } from '../utils/format'
 
 export default function OverviewPage() {
@@ -122,7 +124,7 @@ function CoverageSection({ profile, assembly }) {
           NA
         ),
     },
-    { key: 'extent', header: 'Area (per Delimitation Order 2008)', render: (r) => <span className="muted small">{r.extent}</span> },
+    { key: 'extent', header: 'Area (per Delimitation Order 2008)', render: (r) => <span className="text-sm text-muted">{r.extent}</span> },
   ]
 
   return (
@@ -138,22 +140,22 @@ function CoverageSection({ profile, assembly }) {
         />
       </KpiGrid>
 
-      <div className="grid grid--2-1">
-        <div className="card">
-          <h3 className="card__title">Assembly constituencies in Pune PC</h3>
-          {assembly.status === 'loading' && <p className="muted small">Loading latest assembly results…</p>}
+      <Grid cols="2-1">
+        <Card>
+          <CardTitle>Assembly constituencies in Pune PC</CardTitle>
+          {assembly.status === 'loading' && <p className="text-sm text-muted">Loading latest assembly results…</p>}
           {assembly.status === 'error' && (
-            <p className="muted small" role="alert">
+            <p className="text-sm text-muted" role="alert">
               Assembly results could not be loaded, so electors and MLAs are not shown.{' '}
-              <button type="button" className="link-btn" onClick={assembly.retry}>
+              <LinkButton onClick={assembly.retry}>
                 Retry
-              </button>
+              </LinkButton>
             </p>
           )}
           <DataTable caption="Assembly segments of Pune PC" columns={columns} rows={rows} rowKey={(r) => r.acNo} />
           <Notes notes={[profile.delimitationNote, ...profile.segmentNotes]} />
           <SourceLine sources={profile.sources.slice(0, 1)} />
-        </div>
+        </Card>
 
         <ChartCard
           title="Electors by assembly segment"
@@ -167,14 +169,14 @@ function CoverageSection({ profile, assembly }) {
               xKey="name"
               layout="vertical"
               unit="count"
-              series={[{ key: 'electors', label: 'Electors', color: 'var(--accent)' }]}
+              series={[{ key: 'electors', label: 'Electors', color: 'var(--color-brand)' }]}
               height={280}
             />
           ) : (
             <EmptyState title="Electors by segment unavailable" />
           )}
         </ChartCard>
-      </div>
+      </Grid>
     </Section>
   )
 }
@@ -233,7 +235,7 @@ function DemographicsSection({ profile }) {
       title={`Demographic profile (Census ${year})`}
       description={profile.demographicsNote}
     >
-      <div className="filter-bar" role="group" aria-label="Demographic filters">
+      <FilterBar label="Demographic filters">
         <SelectField
           label="Geography"
           value={dataset.id}
@@ -241,7 +243,7 @@ function DemographicsSection({ profile }) {
           options={datasets.map((d) => ({ value: d.id, label: `${d.title} (Census ${d.referenceYear})` }))}
           hint={dataset.geography}
         />
-      </div>
+      </FilterBar>
 
       <KpiGrid label={`Census ${year} indicators for ${dataset.title}`}>
         <KpiCard label={`Population (${year})`} value={formatNumber(f.population)} />
@@ -252,7 +254,7 @@ function DemographicsSection({ profile }) {
         <KpiCard label="ST population" value={formatPct(f.stPct)} hint={f.stPopulation != null ? formatNumber(f.stPopulation) : undefined} />
       </KpiGrid>
 
-      <div className="grid grid--3">
+      <Grid cols={3}>
         <ChartCard
           title="Gender distribution"
           subtitle={`${dataset.title}, Census ${year}`}
@@ -262,8 +264,8 @@ function DemographicsSection({ profile }) {
           {f.males != null && f.females != null ? (
             <ShareDonut
               slices={[
-                { name: 'Male', value: f.males, color: 'var(--series-1)' },
-                { name: 'Female', value: f.females, color: 'var(--series-2)' },
+                { name: 'Male', value: f.males, color: 'var(--color-series-1)' },
+                { name: 'Female', value: f.females, color: 'var(--color-series-2)' },
               ]}
             />
           ) : (
@@ -281,8 +283,8 @@ function DemographicsSection({ profile }) {
           {f.rural != null && f.urban != null ? (
             <ShareDonut
               slices={[
-                { name: 'Urban', value: f.urban, color: 'var(--series-3)' },
-                { name: 'Rural', value: f.rural, color: 'var(--series-4)' },
+                { name: 'Urban', value: f.urban, color: 'var(--color-series-3)' },
+                { name: 'Rural', value: f.rural, color: 'var(--color-series-4)' },
               ]}
             />
           ) : (
@@ -304,7 +306,7 @@ function DemographicsSection({ profile }) {
                 { group: 'Female', value: f.literacyFemale },
               ]}
               xKey="group"
-              series={[{ key: 'value', label: 'Literacy rate', color: 'var(--accent)' }]}
+              series={[{ key: 'value', label: 'Literacy rate', color: 'var(--color-brand)' }]}
               yDomain={[0, 100]}
               height={240}
             />
@@ -312,11 +314,11 @@ function DemographicsSection({ profile }) {
             <EmptyState title="Literacy not available for this geography" />
           )}
         </ChartCard>
-      </div>
+      </Grid>
 
-      <div className="card">
-        <h3 className="card__title">All indicators by geography</h3>
-        <p className="card__subtitle">Census of India {year}. &ldquo;N/A&rdquo; means the figure could not be verified from a reliable source.</p>
+      <Card>
+        <CardTitle>All indicators by geography</CardTitle>
+        <CardSubtitle>Census of India {year}. &ldquo;N/A&rdquo; means the figure could not be verified from a reliable source.</CardSubtitle>
         <DataTable
           caption="Census indicators compared across geographies"
           rowKey={(r) => r.key}
@@ -333,7 +335,7 @@ function DemographicsSection({ profile }) {
         />
         <Notes notes={dataset.notes} title={`Notes on ${dataset.title}`} />
         <SourceLine sources={dataset.sources} />
-      </div>
+      </Card>
     </Section>
   )
 }
@@ -341,7 +343,7 @@ function DemographicsSection({ profile }) {
 function MembersSection({ profile }) {
   return (
     <Section id="members" title="Members of Parliament since 1951" description={profile.membersNote}>
-      <div className="card">
+      <Card>
         <DataTable
           caption="Members of Parliament for Pune"
           searchable
@@ -358,7 +360,7 @@ function MembersSection({ profile }) {
           rows={profile.members}
         />
         <SourceLine sources={profile.sources.slice(1, 2)} />
-      </div>
+      </Card>
     </Section>
   )
 }

@@ -38,7 +38,7 @@ export function CandidateResultsTable({ record, caption }) {
       render: (r) => (
         <>
           {r.name}
-          {r.isWinner && <span className="badge badge--win">Winner</span>}
+          {r.isWinner && <span className="ml-2 inline-block rounded-full bg-win px-2 py-px align-middle text-[0.72rem] font-semibold text-white">Winner</span>}
         </>
       ),
     },
@@ -69,9 +69,9 @@ export function CandidateResultsTable({ record, caption }) {
         searchText={(r) => `${r.name} ${r.party} ${partyName(r.party)}`}
         initialSort={{ key: 'votes', dir: 'desc' }}
         pinBottom={isOthersRow}
-        rowClassName={(r) => (r.isWinner ? 'is-winner' : r.type === 'others' ? 'is-muted' : undefined)}
+        rowClassName={(r) => (r.isWinner ? 'bg-win-soft' : r.type === 'others' ? 'text-muted italic' : undefined)}
       />
-      <dl className="totals">
+      <dl className="mt-1 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-x-4 gap-y-2 text-sm [&_dd]:font-semibold [&_dd]:tabular-nums [&_dt]:text-xs [&_dt]:text-muted">
         <div>
           <dt>Total valid votes</dt>
           <dd>{formatNumber(valid)}</dd>

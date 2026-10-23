@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { PageHeader, Section } from '../components/layout/PageHeader'
 import { LoadingState } from '../components/common/StatusMessage'
+import { Card, Callout } from '../components/ui'
 import { useAssemblyResults, useConstituencyProfile, useLokSabhaResults } from '../hooks/useElectionData'
 
 /** Collects every distinct source URL referenced anywhere in the loaded datasets. */
@@ -36,7 +37,7 @@ export default function DataSourcesPage() {
       </PageHeader>
 
       <Section id="what" title="What is in the dataset">
-        <div className="prose card">
+        <Card className="max-w-225 [&_li+li]:mt-2 [&_ul]:list-disc [&_ul]:pl-5">
           <ul>
             <li>
               <strong>Constituency:</strong> Pune (PC 34), Maharashtra, on its post-2008 delimitation boundaries.
@@ -55,12 +56,12 @@ export default function DataSourcesPage() {
               constituency, so none of these geographies match the constituency exactly.
             </li>
           </ul>
-          {disclaimer && <p className="callout">{disclaimer}</p>}
-        </div>
+          {disclaimer && <Callout>{disclaimer}</Callout>}
+        </Card>
       </Section>
 
       <Section id="rules" title="Calculation rules and assumptions">
-        <div className="prose card">
+        <Card className="max-w-225 [&_li+li]:mt-2 [&_ul]:list-disc [&_ul]:pl-5">
           <ul>
             <li>
               <strong>Total valid votes</strong> are votes for candidates and exclude NOTA. Vote share and margin % use
@@ -88,11 +89,11 @@ export default function DataSourcesPage() {
               evidence of how any individual, community or group voted.
             </li>
           </ul>
-        </div>
+        </Card>
       </Section>
 
       <Section id="limits" title="Known limitations">
-        <div className="prose card">
+        <Card className="max-w-225 [&_li+li]:mt-2 [&_ul]:list-disc [&_ul]:pl-5">
           <ul>
             <li>
               ECI result pages could not be fetched directly when the dataset was compiled. Vote counts were taken from
@@ -113,11 +114,11 @@ export default function DataSourcesPage() {
               today&apos;s wards or neighbourhoods.
             </li>
           </ul>
-        </div>
+        </Card>
       </Section>
 
       <Section id="api" title="Mock API">
-        <div className="prose card">
+        <Card className="max-w-225 [&_li+li]:mt-2 [&_ul]:list-disc [&_ul]:pl-5">
           <p>
             There is no backend. The app reads three JSON files from <code>/public/data</code> through a small data
             layer (<code>src/api</code>) that validates every response, so it can be replaced by a real API without
@@ -138,15 +139,15 @@ export default function DataSourcesPage() {
             To see the error states, add <code>?mockError=all</code> (or <code>?mockError=assembly</code>, etc.) to the
             URL. Set <code>VITE_MOCK_LATENCY_MS=1200</code> in <code>.env.local</code> to see loading states.
           </p>
-        </div>
+        </Card>
       </Section>
 
       <Section id="sources" title="All sources referenced">
-        <div className="card">
+        <Card>
           {loading ? (
             <LoadingState label="Collecting sources…" />
           ) : (
-            <ul className="source-list">
+            <ul className="list-disc columns-2 gap-x-8 pl-5 text-sm [column-width:320px] [&_li]:mb-1.5 [&_li]:break-inside-avoid">
               {sources.map((s) => (
                 <li key={s.url ?? s.label}>
                   {s.url ? (
@@ -160,7 +161,7 @@ export default function DataSourcesPage() {
               ))}
             </ul>
           )}
-        </div>
+        </Card>
       </Section>
     </>
   )

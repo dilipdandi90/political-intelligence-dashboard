@@ -20,15 +20,24 @@ numbers against more than one source.
 - React 19 (JavaScript, JSX) with Vite
 - React Router for the five pages, with filter state kept in the URL
 - Recharts for charts
-- Plain CSS with custom properties (one stylesheet, light theme)
+- Tailwind CSS v4 (through the Vite plugin), light theme
 - Fetch API for loading data
 - Vitest and React Testing Library for unit and integration tests
 - Playwright for browser tests at desktop, tablet and mobile sizes
 
 I picked Recharts over Chart.js because it's built from React components, which made it easy to wrap into a few
 reusable chart components. It's the heaviest dependency, so it's split into its own chunk. Every page except the
-overview is lazy-loaded. I skipped Tailwind and CSS-in-JS because one stylesheet built on design tokens was enough for
-an app this size.
+overview is lazy-loaded.
+
+How the styling is set up:
+
+- **Tokens.** All styling is Tailwind utility classes. The design tokens (brand colour, chart series colours, text and
+  border colours) are defined once in `src/styles/index.css` with `@theme`. That gives classes like `bg-brand` or
+  `text-muted`.
+- **Charts share the same colours.** Tailwind also exposes each token as a CSS variable, and the Recharts components
+  read those (e.g. `stroke="var(--color-line)"`), so charts and the rest of the UI always match.
+- **Repeated patterns are small components.** Cards, buttons, callouts and grid layouts live in
+  `src/components/ui/index.jsx` instead of using `@apply`, so a long class list is written once.
 
 ## Running it
 
@@ -85,9 +94,10 @@ public/data/          constituency.json, lok-sabha.json, assembly.json
 src/api/              fetching, validation, caching
 src/hooks/            useAsync (loading/error/retry), data hooks, URL filter state
 src/utils/            electionMath.js (all formulas), formatting, party colours
+src/components/ui/    Tailwind building blocks: Card, Button, Callout, Grid…
 src/components/       KPI cards, data table, filters, chart wrappers, layout
 src/pages/            one file per route
-src/styles/           index.css
+src/styles/index.css  Tailwind entry: @import, @theme design tokens, base styles
 e2e/                  Playwright tests
 ```
 
@@ -151,7 +161,7 @@ npm run test:all                  # lint + both
 
 If you'd rather use a browser that's already installed, run `PW_CHANNEL=msedge npm run test:e2e` (or `chrome`).
 
-Right now there are 153 Vitest tests and 33 Playwright tests (11 tests × 3 screen sizes), all passing. They cover:
+Right now there are 153 Vitest tests and 37 Playwright tests across the three screen sizes (one phone-only check is skipped on the larger sizes), all passing. They cover:
 
 - **Calculations:** `electionMath.test.js` tests each formula and its edge cases. The integration tests also compare
   what's on screen against numbers I worked out by hand, for example the 2024 winner's 53.30% share and the 1,23,038
@@ -206,9 +216,15 @@ happens, run `npx vitest run --maxWorkers=1`.
   - Sortable table headers are buttons and announce their sort order.
   - Loading and error messages are announced to screen readers.
 - **Layout:**
-  - On desktop there's a sidebar menu; on smaller screens it becomes a scrollable tab bar.
+  - On desktop the sections are in a sidebar. On phones and tablets (below 1024px) they're behind a menu button at
+    the top right of a sticky header. It opens a vertical list and closes when you pick a section, tap outside it or
+    press Escape. The button tells screen readers whether the menu is open (`aria-expanded`).
   - Grids drop from three columns to two to one.
-  - Wide tables scroll inside their own box, so the page never scrolls sideways.
+  - On phones (below 640px) every table turns into stacked cards, one per row, with each value labelled. Since the
+    column headers are hidden there, a "Sort by" dropdown takes over sorting. On wider screens, tables are normal
+    tables and scroll inside their own box if needed. Either way, the page never scrolls sideways.
+  - Chart label columns get narrower on phones, and long candidate names are shortened to initials.
+  - KPI cards show two per row on phones.
 
 ## Data terms
 

@@ -17,6 +17,7 @@ import { useLokSabhaResults } from '../hooks/useElectionData'
 import { useUrlList, useUrlValue } from '../hooks/useUrlState'
 import { leadingParties, partyShareRows, summarizeElection } from '../utils/electionMath'
 import { formatNumber, formatPct } from '../utils/format'
+import { Card, CardTitle, Footnote, Grid } from '../components/ui'
 import { partyColor } from '../utils/parties'
 
 export default function LokSabhaPage() {
@@ -101,17 +102,17 @@ function ComparisonSection({ summaries, selected }) {
 
   return (
     <Section id="ls-compare" title="Year-on-year comparison" description={`${summaries.length} election${summaries.length > 1 ? 's' : ''} selected.`}>
-      <div className="card">
-        <h3 className="card__title">Results summary</h3>
+      <Card>
+        <CardTitle>Results summary</CardTitle>
         <DataTable caption="Lok Sabha results by year" columns={columns} rows={summaries} rowKey={(s) => s.record.id} initialSort={{ key: 'year', dir: 'desc' }} />
         {summaries.some((s) => s.turnoutBasis === 'reported') && (
-          <p className="card__footnote">
+          <Footnote>
             * Turnout as reported by the source, because registered electors could not be verified for that year.
-          </p>
+          </Footnote>
         )}
-      </div>
+      </Card>
 
-      <div className="grid grid--2">
+      <Grid cols={2}>
         <ChartCard
           title="Party vote share by election"
           subtitle="% of total valid votes (excludes NOTA). Parties that reached 3% in any selected year."
@@ -144,14 +145,14 @@ function ComparisonSection({ summaries, selected }) {
           <TrendLineChart
             data={marginRows}
             series={[
-              { key: 'marginPct', label: 'Winning margin', color: 'var(--series-1)' },
-              { key: 'turnoutPct', label: 'Turnout', color: 'var(--series-3)' },
-              { key: 'notaPct', label: 'NOTA', color: 'var(--series-5)', dashed: true },
+              { key: 'marginPct', label: 'Winning margin', color: 'var(--color-series-1)' },
+              { key: 'turnoutPct', label: 'Turnout', color: 'var(--color-series-3)' },
+              { key: 'notaPct', label: 'NOTA', color: 'var(--color-series-5)', dashed: true },
             ]}
             yDomain={[0, 'auto']}
           />
         </ChartCard>
-      </div>
+      </Grid>
     </Section>
   )
 }
@@ -161,7 +162,7 @@ function FocusSection({ record }) {
   return (
     <Section id="ls-focus" title={`${record.year} general election in detail`}>
       <ResultKpis summary={summary} title={`${record.year} result`} />
-      <div className="grid grid--1-1">
+      <Grid cols="1-1">
         <ChartCard
           title={`Candidate vote share, ${record.year}`}
           subtitle="% of total valid votes"
@@ -170,13 +171,13 @@ function FocusSection({ record }) {
         >
           <CandidateShareChart record={record} />
         </ChartCard>
-        <div className="card">
-          <h3 className="card__title">Candidate-wise result, {record.year}</h3>
+        <Card>
+          <CardTitle>Candidate-wise result, {record.year}</CardTitle>
           <CandidateResultsTable record={record} caption={`Candidate-wise result ${record.year}`} />
           <Notes notes={record.notes} />
           <SourceLine sources={record.sources} />
-        </div>
-      </div>
+        </Card>
+      </Grid>
     </Section>
   )
 }

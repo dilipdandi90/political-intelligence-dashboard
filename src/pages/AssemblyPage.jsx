@@ -11,12 +11,13 @@ import { ResultKpis } from '../components/election/ResultKpis'
 import { FilterBar } from '../components/filters/FilterBar'
 import { SelectField } from '../components/filters/SelectField'
 import { YearFilter } from '../components/filters/YearFilter'
-import { PageHeader, Section } from '../components/layout/PageHeader'
+import { PageHeader, Section, Stack } from '../components/layout/PageHeader'
 import { useAssemblyResults } from '../hooks/useElectionData'
 import { useUrlList, useUrlValue } from '../hooks/useUrlState'
 import { assemblyElectionLabels, resultFor, segmentSummaries } from '../utils/assemblySelectors'
 import { electionLabel, leadingParties, partyShareRows, summarizeElection } from '../utils/electionMath'
 import { formatNumber, formatPct } from '../utils/format'
+import { Card, CardTitle, Footnote, Callout, Grid } from '../components/ui'
 import { partyColor } from '../utils/parties'
 
 const SOURCES = [{ label: 'IndiaVotes and Wikipedia assembly constituency pages, reproducing ECI results' }]
@@ -100,18 +101,18 @@ function SegmentSection({ segment, years }) {
       description={`${segment.reservation === 'SC' ? 'Reserved for Scheduled Castes' : 'General (unreserved)'} · ${segment.district} district`}
     >
       {missing.length > 0 && (
-        <p className="callout" role="note">
+        <Callout role="note">
           No result for {segment.name} in: {missing.join(', ')}.{' '}
           {missing.some((m) => m.includes('bye')) ? 'By-elections are only held where a seat falls vacant.' : 'The election was not held for this seat or is not in the dataset.'}
-        </p>
+        </Callout>
       )}
 
       {records.length === 0 ? (
         <EmptyState title={`No data for ${segment.name} in the selected years`} />
       ) : (
         <>
-          <div className="card">
-            <h3 className="card__title">Results by election</h3>
+          <Card>
+            <CardTitle>Results by election</CardTitle>
             <DataTable
               caption={`${segment.name} results by election`}
               rows={summaries}
@@ -130,9 +131,9 @@ function SegmentSection({ segment, years }) {
               ]}
             />
             {summaries.some((s) => s.turnoutBasis === 'reported') && (
-              <p className="card__footnote">* Turnout as reported by the source; votes polled not published.</p>
+              <Footnote>* Turnout as reported by the source; votes polled not published.</Footnote>
             )}
-          </div>
+          </Card>
 
           <ChartCard
             title={`Party vote share in ${segment.name}`}
@@ -158,12 +159,12 @@ function SegmentElectionDetail({ segment, records, defaultLabel }) {
   const summary = summarizeElection(record)
 
   return (
-    <div className="subsection">
+    <Stack>
       <FilterBar label="Election detail">
         <SelectField label="Show candidate-wise result for" value={electionLabel(record)} onChange={setDetail} options={labels.map((l) => ({ value: l, label: l }))} />
       </FilterBar>
       <ResultKpis summary={summary} title={`${segment.name} ${electionLabel(record)} result`} />
-      <div className="grid grid--1-1">
+      <Grid cols="1-1">
         <ChartCard
           title={`Candidate vote share – ${segment.name}, ${electionLabel(record)}`}
           subtitle="% of total valid votes"
@@ -172,14 +173,14 @@ function SegmentElectionDetail({ segment, records, defaultLabel }) {
         >
           <CandidateShareChart record={record} />
         </ChartCard>
-        <div className="card">
-          <h3 className="card__title">Candidate-wise result</h3>
+        <Card>
+          <CardTitle>Candidate-wise result</CardTitle>
           <CandidateResultsTable record={record} caption={`${segment.name} ${electionLabel(record)} candidates`} />
           <Notes notes={record.notes} />
           <SourceLine sources={record.sources} />
-        </div>
-      </div>
-    </div>
+        </Card>
+      </Grid>
+    </Stack>
   )
 }
 
@@ -214,8 +215,8 @@ function CrossSegmentSection({ segments, compareYear, generalLabels, onCompareYe
         <EmptyState title={`No segment results for ${compareYear}`} />
       ) : (
         <>
-          <div className="card">
-            <h3 className="card__title">Segment-wise outcome, {compareYear}</h3>
+          <Card>
+            <CardTitle>Segment-wise outcome, {compareYear}</CardTitle>
             <DataTable
               caption={`Assembly segment outcomes ${compareYear}`}
               rows={rows}
@@ -233,9 +234,9 @@ function CrossSegmentSection({ segments, compareYear, generalLabels, onCompareYe
                 { key: 'electors', header: 'Electors', align: 'right', sortValue: (r) => r.record.electors, render: (r) => formatNumber(r.record.electors) },
               ]}
             />
-          </div>
+          </Card>
 
-          <div className="grid grid--2">
+          <Grid cols={2}>
             <ChartCard
               title={`Winner's vote share and margin, ${compareYear}`}
               subtitle="% of total valid votes in each segment"
@@ -247,8 +248,8 @@ function CrossSegmentSection({ segments, compareYear, generalLabels, onCompareYe
                 xKey="name"
                 layout="vertical"
                 series={[
-                  { key: 'winnerShare', label: "Winner's share", color: 'var(--series-1)' },
-                  { key: 'marginPct', label: 'Margin', color: 'var(--series-3)' },
+                  { key: 'winnerShare', label: "Winner's share", color: 'var(--color-series-1)' },
+                  { key: 'marginPct', label: 'Margin', color: 'var(--color-series-3)' },
                 ]}
                 yDomain={[0, 100]}
                 height={340}
@@ -270,7 +271,7 @@ function CrossSegmentSection({ segments, compareYear, generalLabels, onCompareYe
                 height={Math.max(340, rows.length * 70)}
               />
             </ChartCard>
-          </div>
+          </Grid>
         </>
       )}
     </Section>

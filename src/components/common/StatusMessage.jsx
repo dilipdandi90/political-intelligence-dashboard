@@ -1,13 +1,17 @@
+import { Button } from '../ui'
+
 /**
  * The three non-happy states every data-driven section can be in.
  * Loading uses role="status" so screen readers announce it politely; errors use
  * role="alert" so they are announced immediately.
  */
 
+const BOX = 'my-3 flex flex-col items-center justify-center gap-2 rounded-xl px-4 py-7 text-center'
+
 export function LoadingState({ label = 'Loading data…' }) {
   return (
-    <div className="status status--loading" role="status" aria-live="polite">
-      <span className="spinner" aria-hidden="true" />
+    <div className={`${BOX} flex-row border border-dashed border-line bg-surface text-muted`} role="status" aria-live="polite">
+      <span className="size-4.5 animate-spin rounded-full border-2 border-line border-t-brand motion-reduce:[animation-duration:2.4s]" aria-hidden="true" />
       <span>{label}</span>
     </div>
   )
@@ -15,13 +19,13 @@ export function LoadingState({ label = 'Loading data…' }) {
 
 export function ErrorState({ title = 'Something went wrong', error, onRetry }) {
   return (
-    <div className="status status--error" role="alert">
-      <p className="status__title">{title}</p>
-      {error?.message && <p className="status__detail">{error.message}</p>}
+    <div className={`${BOX} border border-danger bg-danger-soft`} role="alert">
+      <p className="font-semibold">{title}</p>
+      {error?.message && <p className="text-sm">{error.message}</p>}
       {onRetry && (
-        <button type="button" className="btn btn--primary" onClick={onRetry}>
+        <Button variant="primary" onClick={onRetry}>
           Try again
-        </button>
+        </Button>
       )}
     </div>
   )
@@ -29,9 +33,9 @@ export function ErrorState({ title = 'Something went wrong', error, onRetry }) {
 
 export function EmptyState({ title = 'No data available', children }) {
   return (
-    <div className="status status--empty">
-      <p className="status__title">{title}</p>
-      {children && <div className="status__detail">{children}</div>}
+    <div className={`${BOX} border border-dashed border-line bg-surface text-muted`}>
+      <p className="font-semibold text-ink">{title}</p>
+      {children && <div className="text-sm">{children}</div>}
     </div>
   )
 }

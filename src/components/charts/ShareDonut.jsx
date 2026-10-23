@@ -22,7 +22,7 @@ export function ShareDonut({ slices, height = 240 }) {
           labelLine={false}
         >
           {usable.map((s) => (
-            <Cell key={s.name} fill={s.color} stroke="var(--surface)" />
+            <Cell key={s.name} fill={s.color} stroke="var(--color-surface)" />
           ))}
         </Pie>
         <Tooltip

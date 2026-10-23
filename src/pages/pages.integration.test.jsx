@@ -17,7 +17,7 @@ import TrendsPage from './TrendsPage'
 /** Finds a KPI card by its label and returns the text of its value. */
 function kpiValue(label) {
   const term = screen.getAllByText(label, { selector: 'dt' })[0]
-  return term.parentElement.querySelector('.kpi__value').textContent
+  return term.parentElement.querySelector('dd').textContent
 }
 
 beforeEach(() => {

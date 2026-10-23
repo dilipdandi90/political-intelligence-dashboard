@@ -13,6 +13,7 @@ import { useUrlList, useUrlValue } from '../hooks/useUrlState'
 import { assemblyElectionLabels, partyShareMatrix, segmentsWonByParty } from '../utils/assemblySelectors'
 import { electionLabel, leadingParties, partyShareRows, partySwings, summarizeElection } from '../utils/electionMath'
 import { formatNumber, formatPct, formatPp, NA } from '../utils/format'
+import { Card, CardTitle, CardSubtitle, Footnote, Grid } from '../components/ui'
 import { partyColor, partyName } from '../utils/parties'
 
 const FORMULAS = [
@@ -38,14 +39,14 @@ export default function TrendsPage() {
       </PageHeader>
 
       <Section id="formulas" title="Formulas and denominators">
-        <div className="formula-grid">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-3">
           {FORMULAS.map((f) => (
-            <div key={f.name} className="formula">
-              <p className="formula__name">{f.name}</p>
-              <p className="formula__expr">
+            <div key={f.name} className="rounded-xl border border-line bg-surface px-3.5 py-3">
+              <p className="font-semibold">{f.name}</p>
+              <p className="my-1.5 [&_code]:inline-block [&_code]:leading-normal [&_code]:whitespace-normal">
                 <code>{f.formula}</code>
               </p>
-              <p className="formula__note">{f.note}</p>
+              <p className="text-[13px] text-muted">{f.note}</p>
             </div>
           ))}
         </div>
@@ -89,9 +90,9 @@ function ParliamentaryTrends({ elections }) {
         <EmptyState title="No years selected">Select at least one Lok Sabha year.</EmptyState>
       ) : (
         <>
-          <div className="card">
-            <h3 className="card__title">Indicator table</h3>
-            <p className="card__subtitle">All values calculated from the dataset with the formulas above.</p>
+          <Card>
+            <CardTitle>Indicator table</CardTitle>
+            <CardSubtitle>All values calculated from the dataset with the formulas above.</CardSubtitle>
             <DataTable
               caption="Calculated Lok Sabha indicators"
               rows={summaries}
@@ -108,9 +109,9 @@ function ParliamentaryTrends({ elections }) {
                 { key: 'valid', header: 'Valid votes', align: 'right', sortValue: (s) => s.validVotes, render: (s) => formatNumber(s.validVotes) },
               ]}
             />
-          </div>
+          </Card>
 
-          <div className="grid grid--2">
+          <Grid cols={2}>
             <ChartCard
               title="Party performance over time"
               subtitle="Vote share, % of total valid votes"
@@ -121,9 +122,9 @@ function ParliamentaryTrends({ elections }) {
               <TrendLineChart data={partyShareRows(selected, parties)} series={parties.map((p) => ({ key: p, label: p, color: partyColor(p) }))} yDomain={[0, 100]} />
             </ChartCard>
 
-            <div className="card">
-              <h3 className="card__title">Vote-share swing: {party}</h3>
-              <p className="card__subtitle">Change between consecutive selected elections, in percentage points</p>
+            <Card>
+              <CardTitle>Vote-share swing: {party}</CardTitle>
+              <CardSubtitle>Change between consecutive selected elections, in percentage points</CardSubtitle>
               {swings.length === 0 ? (
                 <EmptyState title="Select at least two years to see a swing" />
               ) : (
@@ -139,16 +140,16 @@ function ParliamentaryTrends({ elections }) {
                       key: 'swing',
                       header: 'Swing',
                       align: 'right',
-                      render: (s) => <span className={s.swing > 0 ? 'pos' : s.swing < 0 ? 'neg' : undefined}>{formatPp(s.swing)}</span>,
+                      render: (s) => <span className={s.swing > 0 ? 'font-semibold text-win' : s.swing < 0 ? 'font-semibold text-danger' : undefined}>{formatPp(s.swing)}</span>,
                     },
                   ]}
                 />
               )}
-              <p className="card__footnote">
+              <Footnote>
                 Outcome: {summaries.filter((s) => s.winner?.party === party).map((s) => s.label).join(', ') || 'no wins'} won by {party} among selected years.
-              </p>
-            </div>
-          </div>
+              </Footnote>
+            </Card>
+          </Grid>
         </>
       )}
     </Section>
@@ -173,14 +174,14 @@ function AssemblyTrends({ segments }) {
     }
     return row
   })
-  const segmentColors = ['var(--series-1)', 'var(--series-2)', 'var(--series-3)', 'var(--series-4)', 'var(--series-5)', 'var(--series-6)']
+  const segmentColors = ['var(--color-series-1)', 'var(--color-series-2)', 'var(--color-series-3)', 'var(--color-series-4)', 'var(--color-series-5)', 'var(--color-series-6)']
 
   return (
     <Section id="ac-trends" title="Assembly-level comparison" description="Vidhan Sabha general elections only (the 2023 Kasba Peth by-election is excluded so years are comparable).">
-      <div className="grid grid--2">
-        <div className="card">
-          <h3 className="card__title">Segments won by party</h3>
-          <p className="card__subtitle">Number of the six assembly segments won in each Vidhan Sabha election</p>
+      <Grid cols={2}>
+        <Card>
+          <CardTitle>Segments won by party</CardTitle>
+          <CardSubtitle>Number of the six assembly segments won in each Vidhan Sabha election</CardSubtitle>
           <DataTable
             caption="Segments won by party"
             rows={winningParties.map((p) => ({ party: p, ...Object.fromEntries(labels.map((l) => [l, wins[l]?.[p] ?? 0])) }))}
@@ -191,7 +192,7 @@ function AssemblyTrends({ segments }) {
               ...labels.map((l) => ({ key: l, header: l, align: 'right', sortable: true })),
             ]}
           />
-        </div>
+        </Card>
 
         <ChartCard
           title="Turnout by segment"
@@ -202,26 +203,26 @@ function AssemblyTrends({ segments }) {
         >
           <TrendLineChart data={turnoutRows} series={segments.map((s, i) => ({ key: s.name, label: s.name, color: segmentColors[i % segmentColors.length] }))} yDomain={[30, 70]} />
         </ChartCard>
-      </div>
+      </Grid>
 
-      <div className="card">
-        <div className="card__header">
+      <Card>
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h3 className="card__title">Vote share heat-table: {party}</h3>
-            <p className="card__subtitle">% of total valid votes in each segment. Darker = higher share. Blank = did not contest or not listed.</p>
+            <CardTitle>Vote share heat-table: {party}</CardTitle>
+            <CardSubtitle>% of total valid votes in each segment. Darker = higher share. Blank = did not contest or not listed.</CardSubtitle>
           </div>
-          <div className="card__actions">
+          <div>
             <SelectField label="Party" value={party} onChange={setParty} options={partyOptions.map((p) => ({ value: p, label: p }))} />
           </div>
         </div>
-        <div className="table-scroll" tabIndex={0} role="region" aria-label={`${party} vote share by segment and year`}>
-          <table className="heat-table">
-            <caption className="visually-hidden">{party} vote share by assembly segment and election</caption>
+        <div className="overflow-x-auto rounded-lg border border-line" tabIndex={0} role="region" aria-label={`${party} vote share by segment and year`}>
+          <table className="w-full border-collapse text-sm tabular-nums max-sm:text-xs max-sm:[&_td]:px-2! max-sm:[&_th]:px-2! [&_td]:border-b [&_td]:border-line [&_td]:px-3 [&_td]:py-2.5 [&_th]:border-b [&_th]:border-line [&_th]:px-3 [&_th]:py-2.5 [&_th]:text-left [&_tr:last-child>*]:border-b-0">
+            <caption className="sr-only">{party} vote share by assembly segment and election</caption>
             <thead>
               <tr>
-                <th scope="col">Segment</th>
+                <th scope="col" className="bg-surface-2 text-xs font-semibold tracking-wide text-muted uppercase">Segment</th>
                 {labels.map((l) => (
-                  <th key={l} scope="col" className="num">
+                  <th key={l} scope="col" className="bg-surface-2 text-right! text-xs font-semibold tracking-wide whitespace-nowrap text-muted uppercase">
                     {l}
                   </th>
                 ))}
@@ -230,7 +231,7 @@ function AssemblyTrends({ segments }) {
             <tbody>
               {matrix.map(({ segment, shares }) => (
                 <tr key={segment.acNo}>
-                  <th scope="row">
+                  <th scope="row" className="font-semibold">
                     {segment.acNo} {segment.name}
                   </th>
                   {labels.map((l) => {
@@ -238,8 +239,9 @@ function AssemblyTrends({ segments }) {
                     return (
                       <td
                         key={l}
-                        className="num heat-cell"
-                        style={v != null ? { '--heat': Math.min(v / 70, 1), '--heat-color': partyColor(party) } : undefined}
+                        className="text-right font-semibold whitespace-nowrap"
+                        // shade the cell with the party colour, stronger for a higher share (capped at 70%)
+                        style={v != null ? { background: `color-mix(in srgb, ${partyColor(party)} ${Math.min(v / 70, 1) * 75}%, transparent)` } : undefined}
                       >
                         {v === undefined ? NA : v == null ? '' : formatPct(v, 1)}
                       </td>
@@ -250,7 +252,7 @@ function AssemblyTrends({ segments }) {
             </tbody>
           </table>
         </div>
-      </div>
+      </Card>
     </Section>
   )
 }

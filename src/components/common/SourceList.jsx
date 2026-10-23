@@ -2,8 +2,8 @@
 export function SourceLine({ sources, prefix = 'Source' }) {
   if (!sources?.length) return null
   return (
-    <p className="source-line">
-      <span className="source-line__prefix">{prefix}:</span>{' '}
+    <p className="mt-auto border-t border-dashed border-line pt-2 text-xs text-muted">
+      <span className="font-semibold">{prefix}:</span>{' '}
       {sources.map((s, i) => (
         <span key={`${s.label}-${i}`}>
           {i > 0 && '; '}
@@ -24,11 +24,11 @@ export function SourceLine({ sources, prefix = 'Source' }) {
 export function Notes({ notes, title = 'Data notes' }) {
   if (!notes?.length) return null
   return (
-    <details className="notes">
-      <summary>
+    <details>
+      <summary className="cursor-pointer text-sm font-medium text-brand">
         {title} ({notes.length})
       </summary>
-      <ul>
+      <ul className="mt-2 list-disc space-y-1 pl-5 text-[13.5px] text-muted">
         {notes.map((n) => (
           <li key={n}>{n}</li>
         ))}

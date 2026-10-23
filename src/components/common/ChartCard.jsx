@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { Card, CardSubtitle, CardTitle, Footnote } from '../ui'
 import { SourceLine } from './SourceList'
 
 /**
@@ -10,27 +11,25 @@ import { SourceLine } from './SourceList'
 export function ChartCard({ title, subtitle, description, sources, footnote, table, actions, children }) {
   const titleId = useId()
   return (
-    <section className="card chart-card" aria-labelledby={titleId}>
-      <header className="card__header">
+    <Card as="section" aria-labelledby={titleId}>
+      <header className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h3 id={titleId} className="card__title">
-            {title}
-          </h3>
-          {subtitle && <p className="card__subtitle">{subtitle}</p>}
+          <CardTitle id={titleId}>{title}</CardTitle>
+          {subtitle && <CardSubtitle>{subtitle}</CardSubtitle>}
         </div>
-        {actions && <div className="card__actions">{actions}</div>}
+        {actions && <div>{actions}</div>}
       </header>
-      <div className="chart-card__body" role="img" aria-label={description ?? title}>
+      <div data-chart-body className="min-h-45 w-full" role="img" aria-label={description ?? title}>
         {children}
       </div>
-      {footnote && <p className="card__footnote">{footnote}</p>}
+      {footnote && <Footnote>{footnote}</Footnote>}
       {table && (
-        <details className="chart-card__table">
-          <summary>Show data as table</summary>
+        <details className="group">
+          <summary className="cursor-pointer text-sm font-medium text-brand group-open:mb-2">Show data as table</summary>
           {table}
         </details>
       )}
       <SourceLine sources={sources} />
-    </section>
+    </Card>
   )
 }

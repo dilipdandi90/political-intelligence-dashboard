@@ -30,7 +30,7 @@ export function TrendLineChart({ data, xKey = 'year', series, unit = 'percent', 
             stroke={s.color}
             strokeWidth={2.5}
             strokeDasharray={s.dashed ? '6 4' : undefined}
-            dot={{ r: 4, strokeWidth: 2, fill: 'var(--surface)' }}
+            dot={{ r: 4, strokeWidth: 2, fill: 'var(--color-surface)' }}
             activeDot={{ r: 6 }}
             connectNulls={false}
             isAnimationActive={false}
